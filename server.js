@@ -18,10 +18,9 @@ const app = express();
 app.set('trust proxy', 1);
 app.use(helmet(helmetConfig));
 
-const allowedOrigins = (process.env.CORS_ORIGIN || '').split(',').map(o => o.trim()).filter(Boolean);
 app.use(cors({
   origin: (origin, cb) => {
-    if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+    if (!origin || (origin && origin.includes('.vercel.app')) || origin === process.env.CORS_ORIGIN) {
       cb(null, true);
     } else {
       cb(new Error('CORS: origin not allowed'));
