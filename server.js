@@ -79,6 +79,7 @@ app.get('/api/debug', async (req, res) => {
       has_supabase_url: !!process.env.SUPABASE_URL,
       has_supabase_key: !!process.env.SUPABASE_SERVICE_KEY,
       has_jwt: !!process.env.JWT_SECRET,
+      vercel: process.env.VERCEL,
       supabase_ok: !error,
       supabase_error: error?.message || null,
       rewards_count: data?.length ?? null,
