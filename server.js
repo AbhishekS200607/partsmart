@@ -54,6 +54,15 @@ pages.forEach(p => {
   app.get(p, (req, res) => res.sendFile(path.join(__dirname, 'public', p === '/' ? 'index.html' : `${p.slice(1)}.html`)));
 });
 
+app.get('/api/debug', (req, res) => {
+  res.json({
+    node_env: process.env.NODE_ENV,
+    has_supabase_url: !!process.env.SUPABASE_URL,
+    has_supabase_key: !!process.env.SUPABASE_SERVICE_KEY,
+    has_jwt: !!process.env.JWT_SECRET,
+  });
+});
+
 app.use(errorHandler);
 
 if (config.nodeEnv !== 'production') {
