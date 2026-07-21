@@ -54,7 +54,7 @@ pages.forEach(p => {
   app.get(p, (req, res) => res.sendFile(path.join(__dirname, 'public', p === '/' ? 'index.html' : `${p.slice(1)}.html`)));
 });
 
-app.post('/api/debug-claim', async (req, res) => {
+app.all('/api/debug-claim', async (req, res) => {
   try {
     const { processNewClaim } = require('./src/services/claimService');
     const claim = await processNewClaim('DEBUG-TEST-' + Date.now(), {
