@@ -18,7 +18,22 @@ const adminRoutes = require('./src/routes/admin');
 const app = express();
 
 app.use(helmet(helmetConfig));
-app.use(cors({ origin: config.cors.origin, credentials: true }));
+const allowedOrigins = (process.env.CORS_ORIGIN || '')
+  .split(',')
+  .map(o => o.trim())
+  .filter(Boolean);
+
+app.use(cors({
+  origin: (origin, cb) => {
+    // allow no-origin (mobile/curl/same-origin) or whitelisted
+    if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+      cb(null, true);
+    } else {
+      cb(new Error('CORS: origin not allowed'));
+    }
+  },
+  credentials: true
+}));
 app.use(compression());
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: false }));
