@@ -57,7 +57,8 @@ pages.forEach(p => {
 app.all('/api/debug-claim', async (req, res) => {
   try {
     const { processNewClaim } = require('./src/services/claimService');
-    const claim = await processNewClaim('DEBUG-TEST-' + Date.now(), {
+    const invoice = req.query.inv || 'DEBUG-TEST-' + Date.now();
+    const claim = await processNewClaim(invoice, {
       ip: req.ip, fingerprint: null, userAgent: null
     });
     res.json({ success: true, claim });

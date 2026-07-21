@@ -18,6 +18,7 @@ async function submitClaim(req, res, next) {
 
     res.status(201).json({ success: true, status: 'claimed', claim });
   } catch (err) {
+    console.error('CLAIM_ERROR', JSON.stringify({ message: err.message, code: err.code, details: err.details, hint: err.hint, status: err.status }));
     if (err.status) return res.status(err.status).json({ success: false, message: err.message });
     next(err);
   }
