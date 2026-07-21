@@ -4,6 +4,10 @@ async function submitClaim(req, res, next) {
   try {
     const { invoice_number, device_fingerprint } = req.body;
 
+    if (!invoice_number) {
+      return res.status(400).json({ success: false, message: 'Missing invoice_number', body: req.body });
+    }
+
     // Check if already claimed
     const existing = await getClaimByInvoice(invoice_number);
     if (existing) {
