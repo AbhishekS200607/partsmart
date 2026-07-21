@@ -15,6 +15,7 @@ const adminRoutes = require('./src/routes/admin');
 
 const app = express();
 
+app.set('trust proxy', 1);
 app.use(helmet(helmetConfig));
 
 const allowedOrigins = (process.env.CORS_ORIGIN || '').split(',').map(o => o.trim()).filter(Boolean);
@@ -23,7 +24,7 @@ app.use(cors({
     if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
       cb(null, true);
     } else {
-      cb(new Error('CORS: origin not allowed'));
+      cb(null, true);
     }
   },
   credentials: true
