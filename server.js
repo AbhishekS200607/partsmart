@@ -54,13 +54,22 @@ pages.forEach(p => {
   app.get(p, (req, res) => res.sendFile(path.join(__dirname, 'public', p === '/' ? 'index.html' : `${p.slice(1)}.html`)));
 });
 
-app.get('/api/debug', (req, res) => {
-  res.json({
-    node_env: process.env.NODE_ENV,
-    has_supabase_url: !!process.env.SUPABASE_URL,
-    has_supabase_key: !!process.env.SUPABASE_SERVICE_KEY,
-    has_jwt: !!process.env.JWT_SECRET,
-  });
+app.get('/api/debug', async (req, res) => {
+  try {
+    const supabase = require('./src/config/supabase');
+    const { data, error } = await supabase.from('rewards').select('id').limit(1);
+    res.json({
+      node_env: process.env.NODE_ENV,
+      has_supabase_url: !!process.env.SUPABASE_URL,
+      has_supabase_key: !!process.env.SUPABASE_SERVICE_KEY,
+      has_jwt: !!process.env.JWT_SECRET,
+      supabase_ok: !error,
+      supabase_error: error?.message || null,
+      rewards_count: data?.length ?? null,
+    });
+  } catch (e) {
+    res.json({ crash: e.message, stack: e.stack });
+  }
 });
 
 app.use(errorHandler);
