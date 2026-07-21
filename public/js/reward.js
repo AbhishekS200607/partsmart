@@ -39,8 +39,8 @@ async function loadReward() {
     content.classList.remove('hidden');
     content.style.display = 'flex';
 
-    // Launch confetti
-    launchConfetti();
+    // Show success overlay then launch confetti
+    showSuccessOverlay(() => launchConfetti());
 
   } catch {
     showToast('Failed to load reward. Please try again.', 'error');

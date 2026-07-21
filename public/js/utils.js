@@ -66,6 +66,20 @@ function setLoading(btnId, textId, spinnerId, loading) {
   if (spinner) spinner.classList.toggle('hidden', !loading);
 }
 
+// Success overlay
+function showSuccessOverlay(onDone) {
+  const overlay = document.getElementById('successOverlay');
+  if (!overlay) { onDone && onDone(); return; }
+  // After 1.8s fade out, then remove
+  setTimeout(() => {
+    overlay.classList.add('fade-out');
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+      onDone && onDone();
+    }, 500);
+  }, 1800);
+}
+
 // Confetti animation
 function launchConfetti() {
   const canvas = document.getElementById('confettiCanvas');
