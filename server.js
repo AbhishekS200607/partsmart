@@ -41,6 +41,8 @@ pages.forEach(p => {
 
 app.use(errorHandler);
 
-app.listen(config.port, () => logger.info(`PartSmart running on port ${config.port} [${config.nodeEnv}]`));
+if (config.nodeEnv !== 'production') {
+  app.listen(config.port, () => logger.info(`PartSmart running on port ${config.port} [${config.nodeEnv}]`));
+}
 
 module.exports = app;
