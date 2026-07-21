@@ -54,6 +54,18 @@ pages.forEach(p => {
   app.get(p, (req, res) => res.sendFile(path.join(__dirname, 'public', p === '/' ? 'index.html' : `${p.slice(1)}.html`)));
 });
 
+app.post('/api/debug-claim', async (req, res) => {
+  try {
+    const { processNewClaim } = require('./src/services/claimService');
+    const claim = await processNewClaim('DEBUG-TEST-' + Date.now(), {
+      ip: req.ip, fingerprint: null, userAgent: null
+    });
+    res.json({ success: true, claim });
+  } catch (e) {
+    res.json({ success: false, error: e.message, status: e.status, stack: e.stack });
+  }
+});
+
 app.get('/api/debug', async (req, res) => {
   try {
     const supabase = require('./src/config/supabase');
