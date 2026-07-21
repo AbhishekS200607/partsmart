@@ -1,3 +1,6 @@
+process.on('uncaughtException', (err) => console.error('UNCAUGHT', err.message, err.stack));
+process.on('unhandledRejection', (err) => console.error('UNHANDLED', err?.message, err?.stack));
+
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
