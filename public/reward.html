@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="theme-color" content="#2F4156">
+  <title>PartSmart — You Won!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/reward.css">
+</head>
+<body>
+
+  <div class="reward-page" id="rewardPage">
+
+    <!-- Loading State -->
+    <div id="loadingState" style="text-align:center;">
+      <div class="spinner" style="border-color:rgba(47,65,86,0.2);border-top-color:var(--navy);width:40px;height:40px;border-width:4px;"></div>
+      <p style="margin-top:16px;color:var(--teal);">Loading your reward...</p>
+    </div>
+
+    <!-- Reward Content -->
+    <div id="rewardContent" class="hidden" style="width:100%;display:flex;flex-direction:column;align-items:center;">
+
+      <!-- Congrats Header -->
+      <div class="reward-congrats">
+        <span class="reward-congrats-emoji">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        </span>
+        <h1>Congratulations!</h1>
+        <p>You've won an amazing reward</p>
+      </div>
+
+      <!-- Reward Card -->
+      <div class="reward-card">
+        <div class="reward-card-brand">
+          <div class="reward-card-brand-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="reward-card-brand-name">PartSmart Rewards</div>
+        </div>
+        <div class="reward-card-prize-label">Your Prize</div>
+        <span class="reward-card-prize-icon" id="rewardIcon">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        </span>
+        <div class="reward-card-prize-title" id="rewardTitle">Loading...</div>
+        <div class="reward-card-prize-desc" id="rewardDesc"></div>
+        <div class="reward-card-divider"></div>
+        <div class="reward-card-meta">
+          <div class="reward-meta-row">
+            <span class="reward-meta-label">Invoice</span>
+            <span class="reward-meta-value" id="metaInvoice">—</span>
+          </div>
+          <div class="reward-meta-row">
+            <span class="reward-meta-label">Date</span>
+            <span class="reward-meta-value" id="metaDate">—</span>
+          </div>
+          <div class="reward-meta-row">
+            <span class="reward-meta-label">Reward ID</span>
+            <span class="reward-meta-value" id="metaId">—</span>
+          </div>
+          <div class="reward-meta-row">
+            <span class="reward-meta-label">Status</span>
+            <div class="reward-status-badge">
+              <span class="reward-status-dot"></span>
+              <span id="metaStatus">Pending</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Redeem Instructions -->
+      <div class="glass-card redeem-card">
+        <div class="redeem-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          How to Redeem
+        </div>
+        <div class="redeem-steps">
+          <div class="redeem-step">
+            <div class="redeem-step-num">1</div>
+            <div class="redeem-step-text">Show this screen to the shop owner at the counter.</div>
+          </div>
+          <div class="redeem-step">
+            <div class="redeem-step-num">2</div>
+            <div class="redeem-step-text">Present your physical invoice for verification.</div>
+          </div>
+          <div class="redeem-step">
+            <div class="redeem-step-num">3</div>
+            <div class="redeem-step-text">Owner verifies and hands over your reward. Done!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="reward-actions">
+        <button class="btn btn-primary" id="printBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Save / Print Reward
+        </button>
+        <a href="/" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Back to Home
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <canvas id="confettiCanvas"></canvas>
+  <div class="toast" id="toast"></div>
+  <script src="/js/utils.js"></script>
+  <script src="/js/reward.js"></script>
+  <script>document.getElementById('printBtn').addEventListener('click', () => window.print());</script>
+</body>
+</html>

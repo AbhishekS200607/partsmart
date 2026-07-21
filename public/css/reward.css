@@ -1,0 +1,220 @@
+/* ============================================
+   PARTSMART - Reward & Claimed Page Styles
+   ============================================ */
+
+.reward-page {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--beige) 0%, var(--sky) 50%, var(--beige) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+/* Congrats Header */
+.reward-congrats {
+  text-align: center;
+  margin-bottom: 32px;
+  animation: fadeInUp 0.5s ease forwards;
+}
+.reward-congrats-emoji { display:flex; justify-content:center; margin-bottom:12px; color:var(--navy); }
+.reward-congrats h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--navy), var(--teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+.reward-congrats p { font-size: 1rem; color: var(--teal); }
+
+/* Reward Card */
+.reward-card {
+  width: 100%;
+  max-width: 380px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+  border-radius: 24px;
+  padding: 32px 28px;
+  box-shadow: 0 24px 64px rgba(47,65,86,0.3);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+  animation: scaleIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+}
+.reward-card::before {
+  content: '';
+  position: absolute;
+  top: -40%; right: -20%;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.reward-card-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.reward-card-brand-icon {
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.reward-card-brand-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.reward-card-prize-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(200,217,230,0.7);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.reward-card-prize-icon { display:flex; justify-content:center; margin-bottom:12px; }
+.reward-card-prize-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.reward-card-prize-desc {
+  font-size: 0.875rem;
+  color: rgba(200,217,230,0.8);
+  margin-bottom: 28px;
+}
+.reward-card-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin-bottom: 20px;
+}
+.reward-card-meta { display: flex; flex-direction: column; gap: 10px; }
+.reward-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.reward-meta-label {
+  font-size: 0.75rem;
+  color: rgba(200,217,230,0.6);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.reward-meta-value {
+  font-size: 0.875rem;
+  color: var(--white);
+  font-weight: 600;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+.reward-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(34,197,94,0.2);
+  border: 1px solid rgba(34,197,94,0.4);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4ade80;
+}
+.reward-status-dot {
+  width: 6px; height: 6px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+/* Redeem Instructions */
+.redeem-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 24px;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.5s ease 0.4s both;
+}
+.redeem-title { font-size:1rem; font-weight:700; color:var(--navy); margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+.redeem-steps { display: flex; flex-direction: column; gap: 12px; }
+.redeem-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.redeem-step-num {
+  width: 28px; height: 28px;
+  background: linear-gradient(135deg, var(--navy), var(--teal));
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.redeem-step-text { font-size: 0.9rem; color: var(--teal); line-height: 1.5; padding-top: 4px; }
+
+/* Action Buttons */
+.reward-actions {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: fadeInUp 0.5s ease 0.6s both;
+}
+
+/* Already Claimed Page */
+.claimed-page {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--beige) 0%, var(--sky) 50%, var(--beige) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  text-align: center;
+}
+.claimed-icon { display:flex; justify-content:center; margin-bottom:24px; color:var(--warning); animation: scaleIn 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+.claimed-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 36px 28px;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.5s ease 0.2s both;
+}
+.claimed-card h2 { font-size: 1.5rem; margin-bottom: 12px; }
+.claimed-card p { font-size: 0.95rem; margin-bottom: 24px; }
+.claimed-invoice-box {
+  background: var(--beige);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+.claimed-invoice-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+.claimed-invoice-num {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  font-family: monospace;
+}

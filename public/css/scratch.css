@@ -1,0 +1,166 @@
+/* ============================================
+   PARTSMART - Scratch Page Styles
+   ============================================ */
+
+.scratch-page {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--beige) 0%, var(--sky) 60%, var(--beige) 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 40px;
+}
+
+/* Top Bar */
+.scratch-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: rgba(245,239,235,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(200,217,230,0.4);
+}
+.back-btn {
+  width: 40px; height: 40px;
+  background: var(--white);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(47,65,86,0.1);
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+}
+.back-btn:hover { transform: translateX(-2px); }
+
+/* Invoice Section */
+.invoice-section {
+  padding: 32px 24px;
+  animation: fadeInUp 0.5s ease forwards;
+}
+.invoice-card {
+  padding: 32px 28px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.invoice-header { text-align: center; margin-bottom: 32px; }
+.invoice-emoji { display:flex; justify-content:center; margin-bottom:12px; color:var(--navy); }
+.invoice-header h2 { font-size: 1.6rem; margin-bottom: 8px; }
+.invoice-header p { font-size: 0.95rem; }
+
+.invoice-form .btn { margin-top: 8px; }
+
+.invoice-hint {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: var(--teal);
+  opacity: 0.8;
+}
+
+/* Scratch Card Section */
+.scratch-section {
+  padding: 24px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 0.5s ease forwards;
+}
+.scratch-section.active { display: flex; }
+
+.scratch-header { text-align: center; margin-bottom: 28px; }
+.scratch-header h2 { font-size: 1.5rem; margin-bottom: 8px; }
+.scratch-header p { font-size: 0.9rem; }
+
+/* The Scratch Card */
+.scratch-card-wrapper {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  margin: 0 auto 28px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(47,65,86,0.25);
+  overflow: hidden;
+}
+
+/* Reward underneath */
+.scratch-reward-reveal {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 1;
+}
+.reveal-icon { font-size: 3rem; }
+.reveal-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--white);
+  text-align: center;
+  padding: 0 16px;
+}
+.reveal-subtitle {
+  font-size: 0.8rem;
+  color: rgba(200,217,230,0.8);
+}
+
+/* Canvas scratch layer */
+#scratchCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: crosshair;
+  border-radius: 20px;
+  touch-action: none;
+}
+
+/* Progress */
+.scratch-progress-wrap {
+  width: 300px;
+  margin-bottom: 20px;
+}
+.scratch-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--teal);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.scratch-progress-bar {
+  height: 6px;
+  background: var(--sky);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.scratch-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--navy), var(--teal));
+  border-radius: 3px;
+  transition: width 0.2s ease;
+  width: 0%;
+}
+
+.scratch-tip {
+  font-size: 0.85rem;
+  color: var(--teal);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.scratch-tip-icon { display:flex; align-items:center; color:var(--teal); }
+
+/* Confetti canvas */
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+}

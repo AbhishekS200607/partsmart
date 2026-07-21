@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#2F4156">
+  <title>PartSmart — Scratch Your Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/scratch.css">
+</head>
+<body>
+
+  <div class="scratch-page" id="scratchPage">
+
+    <!-- Top Bar -->
+    <div class="scratch-topbar">
+      <button class="back-btn" id="backBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="logo">
+        <div class="logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="logo-text">Part<span>Smart</span></div>
+      </div>
+      <div style="width:40px"></div>
+    </div>
+
+    <!-- Step 1: Invoice Entry -->
+    <div class="invoice-section" id="invoiceSection">
+      <div class="glass-card invoice-card">
+        <div class="invoice-header">
+          <div class="invoice-emoji">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h2>Enter Invoice Number</h2>
+          <p>Enter the invoice number from your purchase receipt to get your scratch card.</p>
+        </div>
+        <form class="invoice-form" id="invoiceForm" novalidate>
+          <div class="input-group">
+            <input
+              type="text"
+              id="invoiceInput"
+              name="invoice_number"
+              placeholder="e.g. INV-2024-001"
+              autocomplete="off"
+              autocapitalize="characters"
+              maxlength="50"
+              required
+            >
+            <label for="invoiceInput">Invoice Number</label>
+          </div>
+          <div id="invoiceError" style="color:#dc2626;font-size:0.85rem;margin-top:-12px;margin-bottom:12px;display:none;"></div>
+          <button type="submit" class="btn btn-primary" id="submitBtn">
+            <span id="submitText">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              Get My Scratch Card
+            </span>
+            <span id="submitSpinner" class="spinner hidden"></span>
+          </button>
+        </form>
+        <p class="invoice-hint">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          One invoice = One reward forever
+        </p>
+      </div>
+    </div>
+
+    <!-- Step 2: Scratch Card -->
+    <div class="scratch-section" id="scratchSection">
+      <div class="scratch-header">
+        <h2>Scratch to Reveal!</h2>
+        <p>Use your finger or mouse to scratch the silver area</p>
+      </div>
+
+      <div class="scratch-card-wrapper" id="scratchCardWrapper">
+        <div class="scratch-reward-reveal" id="rewardReveal">
+          <span class="reveal-icon" id="revealIcon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+          </span>
+          <div class="reveal-title" id="revealTitle">Loading...</div>
+          <div class="reveal-subtitle">You Won!</div>
+        </div>
+        <canvas id="scratchCanvas"></canvas>
+      </div>
+
+      <!-- Progress -->
+      <div class="scratch-progress-wrap">
+        <div class="scratch-progress-label">
+          <span>Scratch Progress</span>
+          <span id="progressPct">0%</span>
+        </div>
+        <div class="scratch-progress-bar">
+          <div class="scratch-progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="scratch-tip" id="scratchTip">
+        <span class="scratch-tip-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+        </span>
+        <span>Scratch at least 60% to reveal your reward</span>
+      </div>
+    </div>
+
+  </div>
+
+  <canvas id="confettiCanvas"></canvas>
+  <div class="toast" id="toast"></div>
+  <script src="/js/utils.js"></script>
+  <script src="/js/scratch.js"></script>
+  <script>document.getElementById('backBtn').addEventListener('click', () => window.location.href = '/');</script>
+</body>
+</html>
